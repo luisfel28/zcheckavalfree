@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZGW_RE_CHECK_AVAL_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZI_RE_CHECK_AVALType" sap:label="Verificação das Avaliações por contrato" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="intreno"/>
+                </Key>
+                <Property Name="setValidacao_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="intreno" Type="Edm.String" Nullable="false" MaxLength="13" sap:display-format="UpperCase" sap:label="RE Key" sap:quickinfo="Internal Key of Real Estate Object"/>
+                <Property Name="empresa" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code"/>
+                <Property Name="contrato" Type="Edm.String" MaxLength="13" sap:display-format="UpperCase" sap:label="Contract" sap:quickinfo="Contract Number"/>
+                <Property Name="denominacao" Type="Edm.String" MaxLength="80" sap:label="Contract Name"/>
+                <Property Name="tp_contrato" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Contract Type"/>
+                <Property Name="dt_ini_contrato" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="dt_fim_valid" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="dt_proximo_fim" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="dt_fim_absoluto" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="termno" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Number" sap:quickinfo="Term Number"/>
+                <Property Name="dt_valid_from" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="dt_valid_to" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="dt_ini_analise" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="taxa_juros" Type="Edm.Decimal" Precision="9" Scale="6"/>
+                <Property Name="dt_fim_provavel" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="status_data" Type="Edm.String" MaxLength="3" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="status_taxa" Type="Edm.String" MaxLength="3" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="meses_calc" Type="Edm.Int32" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="taxa_juros_calc" Type="Edm.Decimal" Precision="9" Scale="6" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="critic_data" Type="Edm.Byte" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="critic_taxa" Type="Edm.Byte" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="critic_final" Type="Edm.Byte" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZGW_RE_CHECK_AVAL_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZI_RE_CHECK_AVAL" EntityType="ZGW_RE_CHECK_AVAL_SRV.ZI_RE_CHECK_AVALType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <FunctionImport Name="setValidacao" ReturnType="ZGW_RE_CHECK_AVAL_SRV.ZI_RE_CHECK_AVALType" EntitySet="ZI_RE_CHECK_AVAL" m:HttpMethod="POST" sap:action-for="ZGW_RE_CHECK_AVAL_SRV.ZI_RE_CHECK_AVALType" sap:applicable-path="setValidacao_ac">
+                    <Parameter Name="intreno" Type="Edm.String" Mode="In" MaxLength="13"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotations Target="ZGW_RE_CHECK_AVAL_SRV.ZGW_RE_CHECK_AVAL_SRV_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGW_RE_CHECK_AVAL_SRV.ZGW_RE_CHECK_AVAL_SRV_Entities/ZI_RE_CHECK_AVAL" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>setValidacao_ac</PropertyPath>
+                                <PropertyPath>dt_proximo_fim</PropertyPath>
+                                <PropertyPath>dt_fim_absoluto</PropertyPath>
+                                <PropertyPath>status_data</PropertyPath>
+                                <PropertyPath>status_taxa</PropertyPath>
+                                <PropertyPath>meses_calc</PropertyPath>
+                                <PropertyPath>taxa_juros_calc</PropertyPath>
+                                <PropertyPath>critic_data</PropertyPath>
+                                <PropertyPath>critic_taxa</PropertyPath>
+                                <PropertyPath>critic_final</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>setValidacao_ac</PropertyPath>
+                                <PropertyPath>dt_proximo_fim</PropertyPath>
+                                <PropertyPath>dt_fim_absoluto</PropertyPath>
+                                <PropertyPath>status_data</PropertyPath>
+                                <PropertyPath>status_taxa</PropertyPath>
+                                <PropertyPath>meses_calc</PropertyPath>
+                                <PropertyPath>taxa_juros_calc</PropertyPath>
+                                <PropertyPath>critic_data</PropertyPath>
+                                <PropertyPath>critic_taxa</PropertyPath>
+                                <PropertyPath>critic_final</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://DEVRE.FIDELIDADEMUNDIAL.COM:44300/sap/opu/odata/SAP/ZGW_RE_CHECK_AVAL_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://DEVRE.FIDELIDADEMUNDIAL.COM:44300/sap/opu/odata/SAP/ZGW_RE_CHECK_AVAL_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

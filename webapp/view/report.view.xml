@@ -1,0 +1,375 @@
+<mvc:View controllerName="com.fidelidademundial.zcheckavalfree.controller.report"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}" enableScrolling="false">
+        <content>
+            <HBox>
+                <VBox class="sapUiMediumMarginBegin sapUiMediumMarginTop" id="pnlCont" visible="true">
+                        <HBox>
+                            <VBox>
+                                <Label text="Empresa" />
+                                <FlexBox alignItems="Center" justifyContent="Start">
+                                     <MultiComboBox
+                                        selectionChange="handleCompanyChange"
+                                        class="sapUiSmallMarginEnd"
+                                        width="150px"
+                                        showSecondaryValues= "true"
+                                        selectedKeys="FS01,FIIS"
+										items="{
+											path: '/I_CompanyCode',
+											sorter: { path: 'CompanyCode' }
+										}">
+                                    <core:ListItem key="{CompanyCode}" text="{CompanyCode}" additionalText="{CompanyCodeName}"/>
+                                    </MultiComboBox>
+                                </FlexBox>
+                            </VBox>
+                            <VBox>
+                                <Label text="Contrato" class="sapUiSmallMarginEnd" />
+                                <FlexBox alignItems="Center" justifyContent="Start">
+                                    <Input
+                                        id="txtBuscaContrato"
+                                        class="sapUiSmallMarginEnd"
+                                        width="180px"
+                                        placeholder="" >
+                                    </Input>
+                                </FlexBox>
+                            </VBox>
+                            <VBox>
+                                <Label text="Tipo" class="sapUiSmallMarginEnd" />
+                                <FlexBox alignItems="Center" justifyContent="Start">
+                                    <MultiComboBox
+                                        selectionChange="handleTpContratoChange"
+                                        class="sapUiSmallMarginEnd"
+                                        width="150px"
+                                        showSecondaryValues= "true"
+                                        selectedKeys="AA,AE"
+                                        items="{
+											path: '/ZI_TPCONTRACT_DESC',
+											sorter: { path: 'tp_contract' }
+										}">
+                                    <core:ListItem key="{tp_contract}" text="{tp_contract}" additionalText="{denom_breve}"/>
+                                    </MultiComboBox>
+                                </FlexBox>
+                            </VBox>
+                            <VBox>
+                                <Label text="Data início contrato" class="sapUiSmallMarginEnd" />
+                                <FlexBox alignItems="Center" justifyContent="Start">
+                                <DateRangeSelection
+										id="cboDtIniCont"
+                                        class="sapUiSmallMarginEnd"
+										width="200px"
+										value= "{
+											'type': 'sap.ui.model.type.DateInterval',
+											'formatOptions': {
+												'pattern': 'dd/MM/yyyy'
+											},
+											'parts': [
+												{
+													'type': 'sap.ui.model.type.Date',
+													'path': '/dtini'
+												},
+												{
+													'type': 'sap.ui.model.type.Date',
+													'path': '/dtfim'
+												}
+											]
+										}"
+								change="handleChange"/>
+                                </FlexBox>
+                            </VBox>
+                            <VBox>
+                                <Label text="Fim da validade" class="sapUiSmallMarginEnd" />
+                                <FlexBox alignItems="Center" justifyContent="Start">
+                                <DateRangeSelection
+										id="cboDtFimValid"
+										width="200px"
+                                        class="sapUiSmallMarginEnd"
+										value= "{
+											'type': 'sap.ui.model.type.DateInterval',
+											'formatOptions': {
+												'pattern': 'dd/MM/yyyy'
+											},
+											'parts': [
+												{
+													'type': 'sap.ui.model.type.Date',
+													'path': '/dtini'
+												},
+												{
+													'type': 'sap.ui.model.type.Date',
+													'path': '/dtfim'
+												}
+											]
+										}"
+								change="handleChange"/>
+                                </FlexBox>
+                            </VBox>
+                            <VBox>
+                                <Label text="Próximo fim" class="sapUiSmallMarginEnd" />
+                                <FlexBox alignItems="Center" justifyContent="Start">
+                                <DateRangeSelection
+										id="cboDtProximoFim"
+										width="200px"
+                                        class="sapUiSmallMarginEnd"
+										value= "{
+											'type': 'sap.ui.model.type.DateInterval',
+											'formatOptions': {
+												'pattern': 'dd/MM/yyyy'
+											},
+											'parts': [
+												{
+													'type': 'sap.ui.model.type.Date',
+													'path': '/dtini'
+												},
+												{
+													'type': 'sap.ui.model.type.Date',
+													'path': '/dtfim'
+												}
+											]
+										}"
+								change="handleChange"/>
+                                </FlexBox>
+                            </VBox>                            
+                            <VBox>
+                                <HBox >
+                                    <VBox class="sapUiSmallMarginBegin">
+                                        <HBox >
+                                            <VBox class="sapUiSmallMarginBegin">
+                                                <Label text="DATAS"  class="sapUiSmallMarginEnd" />
+                                                <FlexBox alignItems="Center" justifyContent="Start">
+                                                    <RadioButtonGroup id="rbgDATAS" class="sapUiSmallMarginEnd" valueState="Information">
+                                                        <RadioButton id="rbgDATAST" text="Todos" />
+                                                        <RadioButton id="rbgDATASS" text="Atualizadas" />
+                                                        <RadioButton id="rbgDATASE" text="Desatualizadas" />
+                                                    </RadioButtonGroup>
+                                                </FlexBox>
+                                            </VBox>
+                                            <VBox class="sapUiSmallMarginBegin">
+                                                <Label text="TAXAS" class="sapUiSmallMarginEnd" />
+                                                <FlexBox alignItems="Center" justifyContent="Start">
+                                                    <RadioButtonGroup id="rbgTAXAS" class="sapUiSmallMarginEnd" valueState="Information">
+                                                        <RadioButton id="rbgTAXAST" text="Todos" />
+                                                        <RadioButton id="rbgTAXASS" text="Atualizadas" />
+                                                        <RadioButton id="rbgTAXASE" text="Desatualizadas" />
+                                                    </RadioButtonGroup>
+                                                </FlexBox>
+                                            </VBox>
+                                        </HBox>
+                                    </VBox>
+                                    <VBox class="sapUiSmallMarginBegin">
+                                        <HBox>
+                                        <VBox><Button text="Ver Resultados" type="Emphasized" width="150px" icon="sap-icon://inspection" press="OnSearchCont" class="sapUiSmallMarginBegin sapUiSmallMarginTop"></Button></VBox>
+                                        </HBox>
+                                        <!-- <VBox><Button text="Limpar" icon="sap-icon://delete" press="OnClearCont" class="sapUiSmallMarginBegin sapUiSmallMarginTop"></Button></VBox>   -->
+                                        <HBox>
+                                        <VBox><Button text="Exportar" type="Accept" width="150px" icon="sap-icon://excel-attachment" press="onExportCont" class="sapUiSmallMarginBegin sapUiSmallMarginTop"></Button></VBox>
+                                        </HBox>
+                                    </VBox>
+                                    <!-- <VBox>
+                                        <Label text="Todos" class="sapUiSmallMarginEnd" />
+                                        <FlexBox alignItems="Center" justifyContent="Start">
+                                            <RadioButtonGroup id="rbgTodos" class="sapUiSmallMarginEnd" valueState="Information">
+                                                <RadioButton id="rbgDATAST" text="OK" />
+                                                <RadioButton id="rbgTAXAST" text="Erro" />
+                                            </RadioButtonGroup>&nbsp+
+;
+                                        </FlexBox>+
+
+                                    </VBox>
+                                    <VBox>
+                                        <Label text="Sucessos" class="sapUiSmallMarginEnd" />
+                                        <FlexBox alignItems="Center" justifyContent="Start">
+                                            <RadioButtonGroup id="rbgSucessos" class="sapUiSmallMarginEnd" valueState="Success">
+                                                <RadioButton id="rbgDATASS" text="OK" />
+                                                <RadioButton id="rbgTAXASS" text="Erro" />
+                                            </RadioButtonGroup>&nbsp+
+;
+                                        </FlexBox>
+                                    </VBox>
+                                    <VBox>
+                                        <Label text="Erros" class="sapUiSmallMarginEnd" />
+                                        <FlexBox alignItems="Center" justifyContent="Start">
+                                            <RadioButtonGroup id="rbgErros" class="sapUiSmallMarginEnd" valueState="Error">
+                                                <RadioButton id="rbgDATASE" text="OK" />
+                                                <RadioButton id="rbgTAXASE" text="Erro" />
+                                            </RadioButtonGroup>&nbsp+
+;
+                                        </FlexBox>
+                                    </VBox>    -->
+                                </HBox>
+                            </VBox>
+                        </HBox>
+                        <!-- <HBox>
+                            <VBox>
+                                <HBox>
+                                  <VBox><Button text="Ver Resultados" type="Emphasized" icon="sap-icon://inspection" press="OnSearchCont" class="sapUiSmallMarginTop"></Button></VBox>
+                                  <VBox><Button text="Limpar" icon="sap-icon://delete" press="OnClearCont" class="sapUiSmallMarginBegin sapUiSmallMarginTop"></Button></VBox>
+                                  <VBox><Button text="Exportar" type="Accept" icon="sap-icon://excel-attachment" press="onExportCont" class="sapUiSmallMarginBegin sapUiSmallMarginTop"></Button></VBox>
+                                </HBox>
+                            </VBox>
+                        </HBox>   -->
+                </VBox>
+            </HBox>
+            <HBox class="sapUiTinyMarginTopBottom">
+                <VBox class="sapUiMediumMarginEnd" id="pnlTabCont">
+						<t:Table class="sapUiMediumMarginTop" enableColumnFreeze="true" enableSelectAll="false" fixedColumnCount="3" enableBusyIndicator="true" visibleRowCount="16" alternateRowColors="true" selectionMode="None" 
+                        showNoData="false" id="TabCont" 
+                            rows="{ path:'/ZI_RE_CHECK_AVAL', events: { change: '.onChangeTabCont' } }">
+							<t:extension>
+                                <OverflowToolbar style="Clear">
+                                    <Title id="TabContListTitle" text="Contratos" titleStyle="H3" level="H3"/>
+                                </OverflowToolbar>
+                            </t:extension>
+                            <t:columns>
+<!--                                 <t:Column width="0.5rem">
+                                    <Text text="ABC"/>
+                                    <t:template>
+                                    <ObjectListItem highlight="{=${critic_final}==='3'?'Success':'Error'}"></ObjectListItem>
+                                    </t:template>
+                                </t:Column> -->
+								<t:Column width="5rem" hAlign="Center" >
+									<Text text="Empresa"/>
+                                    <t:template>
+                                        <Label text="{empresa}" design="Bold" />
+                                    </t:template>
+								</t:Column>
+								<t:Column width="4rem" hAlign="Center" >
+									<Text text="Tipo"/>
+                                    <t:template>
+                                        <Label text="{tp_contrato}" design="Bold" />
+                                    </t:template>
+								</t:Column>
+								<t:Column width="5rem" hAlign="Center" >
+									<Text text="Contrato"/>
+                                    <t:template>
+                                        <Link text="{contrato}" press="handleContract" target="_blank"/>
+                                        <!-- <Label text="{contrato}" design="Bold" /> -->
+                                    </t:template>
+								</t:Column>
+								<t:Column width="14rem" >
+									<Text text="Denominação"/>
+                                    <t:template>
+                                        <Text text="{denominacao}" wrapping="false" />
+                                    </t:template>
+								</t:Column>
+                                <t:Column width="7rem" hAlign="Center" sortProperty="dt_ini_contrato">
+									<Text text="Início Contrato"/>
+                                    <t:template>
+                                        <Text text="{ path: 'dt_ini_contrato', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short', pattern: 'dd/MM/yyyy', UTC: true } }" wrapping="false" />
+                                    </t:template>
+								</t:Column>
+                                <t:Column width="7rem" hAlign="Center" sortProperty="dt_fim_valid">
+									<Text text="Fim Validade"/>
+                                    <t:template>
+                                    <ObjectStatus
+                                        text="{ path: 'dt_fim_valid', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short', pattern: 'dd/MM/yyyy', UTC: true } }"
+                                        state="{=${status_data}==='OK'?'Success':'Error'}" />
+                                    </t:template>
+								</t:Column>
+                                <t:Column width="7rem" hAlign="Center" sortProperty="dt_proximo_fim">
+									<Text text="Próximo Fim"/>
+                                    <t:template>
+                                        <ObjectStatus
+                                        text="{ path: 'dt_proximo_fim', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short', pattern: 'dd/MM/yyyy', UTC: true } }"
+                                        state="{=${status_data}==='OK'?'Success':'Error'}" />
+                                    </t:template>
+								</t:Column>
+                                <t:Column width="4rem" hAlign="Center">
+									<Text text="DATAS"/>
+                                    <t:template>
+                                    <ObjectStatus
+                                    icon="{=${status_data}==='OK'?'sap-icon://sys-enter-2':'sap-icon://error'}"
+                                    state="{=${status_data}==='OK'?'Success':'Error'}" />
+                                    </t:template>
+								</t:Column>
+                                <t:Column width="7rem" hAlign="Center" sortProperty="dt_ini_analise">
+									<Text text="Início Análise" />
+                                    <t:template>
+                                        <Text text="{ path: 'dt_ini_analise', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short', pattern: 'dd/MM/yyyy', UTC: true } }" wrapping="false" />
+                                    </t:template>
+								</t:Column>
+                                <t:Column width="7rem" hAlign="Center" sortProperty="dt_fim_provavel">
+									<Text text="Fim Provável"/>
+                                    <t:template>
+                                        <ObjectStatus
+                                        text="{ path: 'dt_fim_provavel', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short', pattern: 'dd/MM/yyyy', UTC: true } }"
+                                        state="{=${status_data}==='OK'?'Success':'Error'}" />
+                                    </t:template>
+								</t:Column>
+                                <t:Column width="7rem" hAlign="Center" sortProperty="dt_fim_absoluto">
+									<Text text="Fim Absoluto"/>
+                                    <t:template>
+                                    <ObjectStatus
+                                        text="{ path: 'dt_fim_absoluto', type: 'sap.ui.model.type.Date', formatOptions: { style: 'short', pattern: 'dd/MM/yyyy', UTC: true } }"
+                                        state="{=${status_data}==='OK'?'Success':'Error'}" />
+                                    </t:template>
+								</t:Column>
+                                <t:Column width="8rem" >
+									<Text text="Tx Jur. Avaliação"/>
+                                    <t:template>
+                                        <ObjectStatus
+                                        text="{taxa_juros}"
+                                        state="{=${status_taxa}==='OK'?'Success':'Error'}" />
+                                    </t:template>
+								</t:Column>
+                                <t:Column width="4rem" hAlign="Center">
+									<Text text="TAXAS"/>
+                                    <t:template>
+                                        <ObjectStatus
+                                        icon="{=${status_taxa}==='OK'?'sap-icon://sys-enter-2':'sap-icon://error'}"
+                                        state="{=${status_taxa}==='OK'?'Success':'Error'}" />
+                                    </t:template>
+								</t:Column>
+                                <t:Column width="7rem" hAlign="Center">
+									<Text text="Vida (meses)"/>
+                                    <t:template>
+                                        <Text text="{meses_calc}" wrapping="false" />
+                                    </t:template>
+								</t:Column>
+                                <t:Column width="9rem" >
+									<Text text="Tx Jur. Referência"/>
+                                    <t:template>
+                                        <ObjectStatus
+                                        text="{taxa_juros_calc}"
+                                        state="{=${status_taxa}==='OK'?'Success':'Error'}" />
+                                    </t:template>
+								</t:Column>
+							</t:columns>
+						</t:Table>
+                    </VBox>
+            </HBox>
+            <HBox>
+                <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+                    <HBox>
+                        <ObjectStatus
+                            id="lblTotal"
+							class="sapUiSmallMarginBottom"
+							icon="sap-icon://information"
+							state="Information" />
+                    </HBox>
+                    <HBox>
+                        <ObjectStatus
+                            id="lblSucessos"
+							class="sapUiSmallMarginBottom"
+							icon="sap-icon://sys-enter-2"
+							state="Success" />
+                    </HBox>          
+                    <HBox>
+                        <ObjectStatus
+                            id="lblErros"                        
+							class="sapUiSmallMarginBottom"
+							icon="sap-icon://error"
+							state="Error" />
+                    </HBox>                              
+                </VBox>
+            </HBox>
+        </content>
+	    <footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button visible="false" icon="sap-icon://begin" type="Emphasized" text="Ajustar Contratos Selecionados" press="AjustarContratos" />
+			</Toolbar>
+		</footer>
+    </Page>
+</mvc:View>
